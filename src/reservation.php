@@ -125,8 +125,42 @@
   
       <!-- Footer -->
       <footer class="bg-gray-800 text-white">
-          <!-- ... Copier le footer de index.html ... -->
-      </footer>
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">LexConsult</h3>
+                    <p class="text-gray-400">Expertise juridique professionnelle à votre service.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Accueil</a></li>
+                        <li><a href="reservations.html" class="text-gray-400 hover:text-white">Réservations</a></li>
+                        <li><a href="login.html" class="text-gray-400 hover:text-white">Connexion</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>contact@lexconsult.fr</li>
+                        <li>+33 1 23 45 67 89</li>
+                        <li>123 Avenue des Avocats<br>75001 Paris</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Horaires</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Lun-Ven: 9h-18h</li>
+                        <li>Sam: 9h-12h</li>
+                        <li>Dim: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>&copy; 2024 LexConsult. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>      
   
       <script>
           function openReservationModal(lawyerName) {

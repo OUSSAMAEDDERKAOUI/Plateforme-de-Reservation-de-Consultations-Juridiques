@@ -69,11 +69,7 @@
                 </div>
             </div>
 
-            <!-- Graphique des Consultations -->
-            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-                <h3 class="text-lg font-semibold text-gray-700 mb-4">Évolution des Consultations</h3>
-                <canvas id="consultationsChart" height="100"></canvas>
-            </div>
+            
 
             <!-- Liste des Consultations -->
             <div class="bg-white rounded-lg shadow-md">
