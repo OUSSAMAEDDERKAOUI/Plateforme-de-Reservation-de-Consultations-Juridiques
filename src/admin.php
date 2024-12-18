@@ -32,13 +32,11 @@
 
     <main class="flex-grow pt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <!-- Dashboard Header -->
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Tableau de Bord</h1>
                 <p class="mt-2 text-gray-600">Bienvenue, Me. Jean Dupont</p>
             </div>
 
-            <!-- Statistiques -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <!-- Consultations du Jour -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
