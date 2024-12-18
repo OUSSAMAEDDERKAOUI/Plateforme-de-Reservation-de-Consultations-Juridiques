@@ -15,40 +15,39 @@
                 <div class="flex items-center">
                     <a href="index.html" class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                         </svg>
                         <span class="ml-2 text-xl font-semibold">LexConsult</span>
                     </a>
                 </div>
-    
+
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                    <a href="reservations.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                    <a href="login.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
-                    <a href="register.html" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800">Inscription</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800">Inscription</a>
                 </div>
-    
+
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-700">
+                    <button id="burger-btn" class="text-gray-700 hover:text-blue-700">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
                     </button>
                 </div>
             </div>
         </div>
-    
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                <a href="reservations.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                <a href="login.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
-                <a href="register.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
-            </div>
-        </div>
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden bg-white text-gray-100">
+                    <div class="px-2 pt-2 pb-3 space-y-1">
+                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
+                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
+                    </div>
+                </div>
     </nav>
     <!-- ... Copier la navigation de index.html ... -->
 
@@ -134,6 +133,10 @@
         </div>
     </footer>
 <script src="script.js"></script>
-
+<script>
+         document.getElementById('burger-btn').onclick = function(e) {
+document.getElementById('mobile-menu').classList.toggle('hidden')  ;      
+    }
+    </script>
     <!-- ... Copier le footer de index.html ... -->
 </html>

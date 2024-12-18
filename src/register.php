@@ -25,15 +25,15 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                    <a href="reservations.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                    <a href="login.html" class="text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
-                    <a href="register.html" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800">Inscription</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
+                    <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800">Inscription</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-700">
+                    <button id="burger-btn" class="text-gray-700 hover:text-blue-700">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -41,14 +41,13 @@
                 </div>
             </div>
         </div>
-
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
+        <div id="mobile-menu" class="hidden bg-white text-gray-100">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="index.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                <a href="reservations.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                <a href="login.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
-                <a href="register.html" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
             </div>
         </div>
     </nav>
@@ -64,14 +63,14 @@
 
                 <div class="bg-white rounded-lg shadow-lg p-8">
                     <div class="w-[100%] mx-auto flex justify-center gap-12 flex-wrap ">
-                        <div class="border border-indigo-600 h-12 px-6  rounded-[10px] bg-blue-600 text-white text-center font-bold text-xl	">
-                            <h1 class="py-[6px]">Créer un compte Client</h1>
-                        </div>
+                        <a href="./registerclient.php"><button class="border border-indigo-600 h-12 px-6  rounded-[10px] bg-blue-600 text-white text-center font-bold text-xl	">
+                                <h1 class="py-[6px]">Créer un compte Client</h1>
+                            </button></a>
+                        <a href="./registeradmin.php"><button class="border border-indigo-600 h-12 px-4  rounded-[10px] bg-blue-600 text-white text-center font-bold text-xl	">
+                                <h1 class="py-[6px]">Créer un compte Avocat</h1>
 
-                        <div class="border border-indigo-600 h-12 px-4  rounded-[10px] bg-blue-600 text-white text-center font-bold text-xl	">
-                            <h1 class="py-[6px]" >Créer un compte Avocat</h1>
+                            </button></a>
 
-                        </div>
 
                     </div>
                 </div>
@@ -85,7 +84,11 @@
             <p>&copy; 2024 LexConsult. Tous droits réservés.</p>
         </div>
     </footer>
-
+    <script>
+        document.getElementById('burger-btn').onclick = function(e) {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>
