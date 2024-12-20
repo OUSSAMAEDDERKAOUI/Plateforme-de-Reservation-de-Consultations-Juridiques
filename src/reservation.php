@@ -3,7 +3,7 @@
 require  './db.php';
 require './check_role.php';
 
-if(!isAuth('client')){
+if (!isAuth('client')) {
     header('Location: ./index.php');
 }
 
@@ -18,11 +18,16 @@ if(!isAuth('client')){
     <title>Réservations - LexConsult</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cacher {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="min-h-screen flex flex-col bg-gray-50">
 
-<nav class="bg-white shadow-lg fixed w-full z-50">
+    <nav class="bg-white shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
@@ -38,7 +43,7 @@ if(!isAuth('client')){
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
                     <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                   
+
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -46,19 +51,19 @@ if(!isAuth('client')){
                     <button id="burger-btn" class="text-gray-700 hover:text-blue-700">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
-                <!-- Mobile Menu -->
-                <div id="mobile-menu" class="hidden bg-white text-gray-100">
-                    <div class="px-2 pt-2 pb-3 space-y-1">
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                        
-                    </div>
-                </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-white text-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+
+            </div>
+        </div>
     </nav>
 
     <main class="flex-grow pt-16">
@@ -66,52 +71,48 @@ if(!isAuth('client')){
             <h1 class="text-3xl font-bold text-gray-900 mb-8">Nos Avocats</h1>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 <?php
-                 $stmt=$conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
+                <?php
+                $stmt = $conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
 
-                 $stmt->execute();
-                 
-                 $result = $stmt->get_result();
-                 
-                 while ($rows = $result->fetch_assoc()) {
-                    echo"<div class='bg-white rounded-lg shadow-md overflow-hidden'>";
-echo" <img src='https://images.unsplash.com/photo-1560250097-0b93528c311a'alt='Me. Jean Dupont 'class='w-full h-48 object-cover'>";
- echo'<div class="p-6">';
- echo'<input type="hidden">'.$rows['id_lawyer']. '</input>';
+                $stmt->execute();
 
-   echo'<h3 class="text-xl font-semibold mb-2">'. $rows['fname'] . '  '.$rows['lname'] .'</h3>';
+                $result = $stmt->get_result();
 
-    echo'<p class="text-gray-600 mb-4">'; echo"<span class='font-bold'>Spécialiste en : </span>" .$rows['speciality'].'</p>';
-     echo'<div class="space-y-2">';
-        echo' <p class="text-sm text-gray-500">' ;echo"<span class='font-bold'>Biographie : </span>".$rows['biography']. '</p>';
-         echo'<p class="text-sm text-gray-500">';echo"<span class='font-bold'>Telephone : </span>".$rows['phone']. '</p>';
-         echo'<p class="text-sm text-gray-500">';echo"<span class='font-bold'>adresse : </span>".$rows['adress'].'</p>';
-     echo'</div>';
-    echo' <button id="avocat" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">';
-      echo'Réserver une consultation';
-     echo'</button>';
- echo'</div>';
-echo'</div>';
-                 }
- 
+                while ($rows = $result->fetch_assoc()) {
+                    echo "<div class='bg-white rounded-lg shadow-md overflow-hidden'>";
+                    echo " <img src='https://images.unsplash.com/photo-1560250097-0b93528c311a'alt='Me. Jean Dupont 'class='w-full h-48 object-cover'>";
+                    echo '<div class="p-6">';
+                   $id= $rows['id_lawyer'] ;
+                    echo '<h3 class="text-xl font-semibold mb-2">' . $rows['fname'] . '  ' . $rows['lname'] . '</h3>';
 
-                 ?>
-               
-
+                    echo '<p class="text-gray-600 mb-4">';
+                    echo "<span class='font-bold'>Spécialiste en : </span>" . $rows['speciality'] . '</p>';
+                    echo '<div class="space-y-2">';
+                    echo ' <p class="text-sm text-gray-500">';
+                    echo "<span class='font-bold'>Biographie : </span>" . $rows['biography'] . '</p>';
+                    echo '<p class="text-sm text-gray-500">';
+                    echo "<span class='font-bold'>Telephone : </span>" . $rows['phone'] . '</p>';
+                    echo '<p class="text-sm text-gray-500">';
+                    echo "<span class='font-bold'>adresse : </span>" . $rows['adress'] . '</p>';
+                    echo '</div>';
+                    echo ' <button id="" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors avocatReserv">';
+                    echo 'Réserver une consultation';
+                    echo '</button>';
+                    echo '</div>';
+                    echo '</div>';
                 
 
-        <!-- Modal de Réservation -->
-        <div id="reservationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-            <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-                <div class="mt-3">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Réserver une consultation</h3>
-                    <form id="reservationForm" class="space-y-4" method="POST" action="./reservationPost.php">
-                        <input type="hidden" id="lawyerName">
-                        <div>
-                            <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                            <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        </div>
-                        <!-- <div>
+               echo' <div id="reservationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <div class="mt-3">
+                            <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Réserver une consultation</h3>';
+                            echo'<form id="reservationForm" class="space-y-4" method="POST" action="./reservationPost.php">';
+                              echo'  <input type="hidden" id="lawyerName">
+                                <div>
+                                    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                                    <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                </div>
+                                <!-- <div>
                             <label for="time" class="block text-sm font-medium text-gray-700">Heure</label>
                             <select id="time" name="time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                 <option value="09:00">09:00</option>
@@ -122,22 +123,30 @@ echo'</div>';
                                 <option value="16:00">16:00</option>
                             </select>
                         </div> -->
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700">Sujet de la consultation</label>
-                            <textarea id="subject" name="subject" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700">Sujet de la consultation</label>
+                                    <textarea id="subject" name="subject" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+                                </div>
+                                <div class="flex justify-end space-x-3">
+                                    <button type="button" id="annuler-btn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                                        Annuler
+                                    </button>';
+              
+
+                                    echo "<a href='./reservationPost.php?id=" . $id . "'>";
+                                    echo'<button id="confirmer-btn" type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">';
+                                          echo  'Confirmer' ;
+                                       echo' </button>';
+                                  echo'  </a>';
+                
+               
+                                echo'</div>';
+                          echo'  </form>
                         </div>
-                        <div class="flex justify-end space-x-3">
-                            <button type="button" id="annuler-btn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
-                                Annuler
-                            </button>
-                            <button id="confirmer-btn"  type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                                Confirmer
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                    </div>
+                </div>';
+                }
+                ?>
     </main>
 
     <!-- Footer -->
@@ -180,40 +189,30 @@ echo'</div>';
     </footer>
 
     <script>
-        // function openReservationModal(lawyerName) {
-        //     document.getElementById('reservationModal').classList.remove('hidden');
-        //     document.getElementById('lawyerName').value = lawyerName;
-        // }
+        const vocatReserv = document.querySelectorAll('.avocatReserv')
+        vocatReserv.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('reservationModal').classList.remove('hidden')
+            });
+        })
 
-        // function closeReservationModal() {
-        //     document.getElementById('reservationModal').classList.add('hidden');
-        // }
 
-        // document.getElementById('reservationForm').addEventListener('submit', function(e) {
-        //     e.preventDefault();
-        //     // Ici, vous ajouteriez la logique pour envoyer les données de réservation
-        //     alert('Réservation confirmée ! Vous recevrez un email de confirmation.');
-        //     closeReservationModal();
-        // });
-        document.getElementById('avocat').addEventListener('click',function(e){
-    e.preventDefault();
-    document.getElementById('reservationModal').classList.remove('hidden')
-});
-document.getElementById('annuler-btn').onclick=function(e){
-    e.preventDefault();
- document.getElementById('reservationModal').classList.add('hidden');
-};
 
-document.getElementById('confirmer-btn').onclick=function(e){
+        document.getElementById('annuler-btn').onclick = function(e) {
+            e.preventDefault();
+            document.getElementById('reservationModal').classList.add('hidden');
+        };
 
-    e.preventDefault();
+        document.getElementById('confirmer-btn').onclick = function(e) {
 
-    document.getElementById('reservationModal').classList.add('hidden');
 
-}
-         document.getElementById('burger-btn').onclick = function(e) {
-document.getElementById('mobile-menu').classList.toggle('hidden')  ;      
-    }
+            document.getElementById('reservationModal').classList.add('hidden');
+
+        }
+        document.getElementById('burger-btn').onclick = function(e) {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
     </script>
     <script src="./js/script.js"></script>
 </body>
