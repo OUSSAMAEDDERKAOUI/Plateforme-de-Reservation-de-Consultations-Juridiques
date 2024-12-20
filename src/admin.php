@@ -35,9 +35,12 @@ if(!isAuth('admin')){
                     </a>
                 </div>
                 <div class="flex items-center">
-                    <button onclick="window.location.href='login.html'" class="text-gray-700 hover:text-blue-700 px-3 py-2">
+                    <a href="./logout.php">
+                    <button  class="text-gray-700 hover:text-blue-700 px-3 py-2">
                         Déconnexion
                     </button>
+                    </a>
+                  
                 </div>
             </div>
         </div>

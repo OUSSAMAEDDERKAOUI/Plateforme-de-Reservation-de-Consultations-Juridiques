@@ -1,16 +1,11 @@
 <?php
 
-include './db.php';
+require  './db.php';
 require './check_role.php';
 
 if(!isAuth('client')){
     header('Location: ./index.php');
 }
-
-
-// $stmt=$conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
-// $stmt->execute();
-// $stmt->bind_result($fname,$lname,)
 
 ?>
 
@@ -70,73 +65,53 @@ if(!isAuth('client')){
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 class="text-3xl font-bold text-gray-900 mb-8">Nos Avocats</h1>
 
-            <!-- Liste des Avocats -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Avocat 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a" alt="Me. Jean Dupont" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Me. Jean Dupont</h3>
-                        <p class="text-gray-600 mb-4">Spécialiste en droit des affaires</p>
-                        <div class="space-y-2">
-                            <p class="text-sm text-gray-500">✓ 15 ans d'expérience</p>
-                            <p class="text-sm text-gray-500">✓ Droit commercial</p>
-                            <p class="text-sm text-gray-500">✓ Fusions et acquisitions</p>
-                        </div>
-                        <button id="avocat" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-                            Réserver une consultation
-                        </button>
-                    </div>
-                </div>
+                 <?php
+                 $stmt=$conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
 
-                <!-- Avocat 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Me. Marie Martin" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Me. Marie Martin</h3>
-                        <p class="text-gray-600 mb-4">Spécialiste en droit de la famille</p>
-                        <div class="space-y-2">
-                            <p class="text-sm text-gray-500">✓ 12 ans d'expérience</p>
-                            <p class="text-sm text-gray-500">✓ Divorce et séparation</p>
-                            <p class="text-sm text-gray-500">✓ Droit des successions</p>
-                        </div>
-                        <button onclick="openReservationModal('Marie Martin')" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-                            Réserver une consultation
-                        </button>
-                    </div>
-                </div>
+                 $stmt->execute();
+                 
+                 $result = $stmt->get_result();
+                 
+                 while ($rows = $result->fetch_assoc()) {
+                    echo"<div class='bg-white rounded-lg shadow-md overflow-hidden'>";
+echo" <img src='https://images.unsplash.com/photo-1560250097-0b93528c311a'alt='Me. Jean Dupont 'class='w-full h-48 object-cover'>";
+ echo'<div class="p-6">';
+ echo'<input type="hidden">'.$rows['id_lawyer']. '</input>';
 
-                <!-- Avocat 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296" alt="Me. Pierre Dubois" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Me. Pierre Dubois</h3>
-                        <p class="text-gray-600 mb-4">Spécialiste en droit immobilier</p>
-                        <div class="space-y-2 font-bold">
-                            <p class="text-xs text-gray-700 ">✓ reconnu pour son expertise dans les affaires de propriété et de baux. Il valorise l'éthique et l'engagement pro bono, tout en étant passionné par l'architecture. </p>
-                            <p class="text-sm text-gray-500">✓ +212 524179890</p>
-                            <p class="text-sm text-gray-500">✓ 12 LOT Jawhara Safi </p>
-                        </div>
-                        <button onclick="openReservationModal('Pierre Dubois')" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-                            Réserver une consultation
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+   echo'<h3 class="text-xl font-semibold mb-2">'. $rows['fname'] . '  '.$rows['lname'] .'</h3>';
+
+    echo'<p class="text-gray-600 mb-4">'; echo"<span class='font-bold'>Spécialiste en : </span>" .$rows['speciality'].'</p>';
+     echo'<div class="space-y-2">';
+        echo' <p class="text-sm text-gray-500">' ;echo"<span class='font-bold'>Biographie : </span>".$rows['biography']. '</p>';
+         echo'<p class="text-sm text-gray-500">';echo"<span class='font-bold'>Telephone : </span>".$rows['phone']. '</p>';
+         echo'<p class="text-sm text-gray-500">';echo"<span class='font-bold'>adresse : </span>".$rows['adress'].'</p>';
+     echo'</div>';
+    echo' <button id="avocat" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">';
+      echo'Réserver une consultation';
+     echo'</button>';
+ echo'</div>';
+echo'</div>';
+                 }
+ 
+
+                 ?>
+               
+
+                
 
         <!-- Modal de Réservation -->
         <div id="reservationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
             <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
                 <div class="mt-3">
                     <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Réserver une consultation</h3>
-                    <form id="reservationForm" class="space-y-4">
+                    <form id="reservationForm" class="space-y-4" method="POST" action="./reservationPost.php">
                         <input type="hidden" id="lawyerName">
                         <div>
                             <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
                             <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                         </div>
-                        <div>
+                        <!-- <div>
                             <label for="time" class="block text-sm font-medium text-gray-700">Heure</label>
                             <select id="time" name="time" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
                                 <option value="09:00">09:00</option>
@@ -146,7 +121,7 @@ if(!isAuth('client')){
                                 <option value="15:00">15:00</option>
                                 <option value="16:00">16:00</option>
                             </select>
-                        </div>
+                        </div> -->
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-700">Sujet de la consultation</label>
                             <textarea id="subject" name="subject" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
