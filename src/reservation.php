@@ -1,3 +1,19 @@
+<?php
+
+include './db.php';
+require './check_role.php';
+
+if(!isAuth('client')){
+    header('Location: ./index.php');
+}
+
+
+// $stmt=$conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
+// $stmt->execute();
+// $stmt->bind_result($fname,$lname,)
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

@@ -1,3 +1,55 @@
+<?php
+
+require './db.php';
+require './check_role.php';
+
+if(!isAuth('guest')){
+    header('Location: ./'.$_COOKIE['user_role'].'.php');
+}
+
+$emailError = '';
+$passwordError = '';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['email'])){
+        $emailError = '';
+    }else{
+        $emailError = 'Email is required !';
+    }
+
+    if(isset($_POST['password'])){
+        $passwordError = '';
+    }else{
+        $passwordError = 'Password is required !';
+    }
+
+    if(isset($_POST['email']) && isset($_POST['password'])){
+        $stmt = $conn->prepare("SELECT id_users, post, password  FROM users WHERE mail = ?  LIMIT 1");
+        $stmt->bind_param('s', $_POST['email']);
+        $stmt->execute();
+        $stmt->bind_result($id, $res_role, $res_password);
+
+        if($stmt->fetch()){
+            $emailError = '';
+            if($_POST['password'] == $res_password){
+                $passwordError = '';
+                //correct 
+                setcookie('user_id', $id, time() + 24 * 3600 , '/');
+                setcookie('user_role', $res_role, time() + 24 * 3600, '/');
+                //reload page
+                header('Location: '.$_SERVER['PHP_SELF']);
+            }else{
+                $passwordError = 'Wrong password';
+            }
+        }else{
+            $emailError = 'There\'s nouser with this email !';
+        }
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -58,7 +110,7 @@
                     Connexion à votre compte
                 </h2>
             </div>
-            <form class="mt-8 space-y-6" action="admin.html" method="GET">
+            <form class="mt-8 space-y-6" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
                         <label for="email" class="sr-only">Email</label>

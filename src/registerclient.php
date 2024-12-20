@@ -36,20 +36,20 @@
                     <button id="burger-btn" class="text-gray-700 hover:text-blue-700">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
-                <!-- Mobile Menu -->
-                <div id="mobile-menu" class="hidden bg-white text-gray-100">
-                    <div class="px-2 pt-2 pb-3 space-y-1">
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
-                        <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
-                    </div>
-                </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-white text-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/index.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Accueil</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/reservation.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Réservations</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/login.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Connexion</a>
+                <a href="http://localhost/Plateforme-de-Reservation-de-Consultations-Juridiques/src/register.php" class="block text-gray-700 hover:text-blue-700 px-3 py-2">Inscription</a>
+            </div>
+        </div>
     </nav>
     <!-- ... Copier la navigation de index.html ... -->
 
@@ -64,51 +64,53 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-8">
-                    <!-- Registration Form -->
-                    <form id="registrationForm" class="space-y-6" onsubmit="return validateForm(event)">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Nom</label>
-                                <input type="text" name="lastname" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <span class="text-red-500 text-sm hidden" data-error="lastname"></span>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Prénom</label>
-                                <input type="text" name="firstname" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <span class="text-red-500 text-sm hidden" data-error="firstname"></span>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" name="email" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <span class="text-red-500 text-sm hidden" data-error="email"></span>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">Téléphone</label>
-                                <input type="tel" name="phone" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                                <span class="text-red-500 text-sm hidden" data-error="phone"></span>
-                            </div>
-                        </div>
-
+                    <form id="registrationForm" class="space-y-6" action="./clientInsert.php" method="post" ">
+                        <div class=" grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                            <input type="password" name="password" required
+                            <label class="block text-sm font-medium text-gray-700">Nom</label>
+                            <input type="text" name="nom" required
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                            <span class="text-red-500 text-sm hidden" data-error="password"></span>
+                            <span class="text-red-500 text-sm hidden" data-error="lastname"></span>
                         </div>
-
                         <div>
-                            <button type="submit"
-                                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                S'inscrire en tant que Client
-                            </button>
+                            <label class="block text-sm font-medium text-gray-700">Prénom</label>
+                            <input type="text" name="prenom" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <span class="text-red-500 text-sm hidden" data-error="firstname"></span>
                         </div>
-                    </form>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <span class="text-red-500 text-sm hidden" data-error="email"></span>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Téléphone</label>
+                            <input type="tel" name="telephone" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <span class="text-red-500 text-sm hidden" data-error="phone"></span>
+                        </div>
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <input type="password" name="password" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                    <span class="text-red-500 text-sm hidden" data-error="password"></span>
+                </div>
+
+                <div>
+                    <a href="./clientInsert.php">
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            S'inscrire en tant que Client
+                        </button>
+                    </a>
+
+                </div>
+                </form>
             </div>
+        </div>
         </div>
     </main>
 

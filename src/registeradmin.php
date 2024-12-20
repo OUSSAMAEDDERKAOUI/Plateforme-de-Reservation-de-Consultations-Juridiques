@@ -59,7 +59,7 @@
         <p class="mt-2 text-gray-600">Créez votre compte professionnel</p>
       </div>
 
-      <form class="space-y-6">
+      <form class="space-y-6" method="POST" action="./avocatInsert.php">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <!-- Nom -->
           <div>
@@ -89,7 +89,7 @@
         <!-- Adresse -->
         <div>
           <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse</label>
-          <input type="text" id="adresse" name="adresse" required
+          <input type="text" id="adresse" name="adress" required
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             placeholder="Votre adresse professionnelle">
         </div>
@@ -127,7 +127,7 @@
         </div>
 
         <!-- Photo -->
-        <div>
+        <!-- <div>
           <label class="block text-sm font-medium text-gray-700">Photo</label>
           <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div class="space-y-1 text-center">
@@ -143,7 +143,7 @@
               <p class="text-xs text-gray-500">PNG, JPG jusqu'à 10MB</p>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div>
           <button type="submit"

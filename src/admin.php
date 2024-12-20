@@ -1,3 +1,16 @@
+<?php
+
+include './db.php';
+require './check_role.php';
+
+if(!isAuth('admin')){
+    header('Location: ./index.php');
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
