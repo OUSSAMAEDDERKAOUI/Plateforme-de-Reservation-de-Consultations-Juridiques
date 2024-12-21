@@ -75,14 +75,14 @@ if (!isAuth('client')) {
                 $stmt = $conn->prepare("SELECT  * FROM users JOIN  info ON users.id_users=info.id_lawyer");
 
                 $stmt->execute();
-
                 $result = $stmt->get_result();
 
                 while ($rows = $result->fetch_assoc()) {
                     echo "<div class='bg-white rounded-lg shadow-md overflow-hidden'>";
                     echo " <img src='https://images.unsplash.com/photo-1560250097-0b93528c311a'alt='Me. Jean Dupont 'class='w-full h-48 object-cover'>";
                     echo '<div class="p-6">';
-                   $id= $rows['id_lawyer'] ;
+
+                    $id = $rows['id_lawyer'];
                     echo '<h3 class="text-xl font-semibold mb-2">' . $rows['fname'] . '  ' . $rows['lname'] . '</h3>';
 
                     echo '<p class="text-gray-600 mb-4">';
@@ -100,14 +100,14 @@ if (!isAuth('client')) {
                     echo '</button>';
                     echo '</div>';
                     echo '</div>';
-                
 
-               echo' <div id="reservationModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+
+                    echo ' <div id="reservationModal" class="reservationModal hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
                     <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
                         <div class="mt-3">
                             <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Réserver une consultation</h3>';
-                            echo'<form id="reservationForm" class="space-y-4" method="POST" action="./reservationPost.php">';
-                              echo'  <input type="hidden" id="lawyerName">
+                    echo '<form id="reservationForm" class="space-y-4" method="POST" action="./reservationPost.php?id=' . $id . '">';
+                    echo '  <input type="hidden" id="lawyerName">
                                 <div>
                                     <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
                                     <input type="date" id="date" name="date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
@@ -128,20 +128,20 @@ if (!isAuth('client')) {
                                     <textarea id="subject" name="subject" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
                                 </div>
                                 <div class="flex justify-end space-x-3">
-                                    <button type="button" id="annuler-btn" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
+                                    <button type="button" id="annuler-btn" class=" annuler-btn px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">
                                         Annuler
                                     </button>';
-              
 
-                                    echo "<a href='./reservationPost.php?id=" . $id . "'>";
-                                    echo'<button id="confirmer-btn" type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">';
-                                          echo  'Confirmer' ;
-                                       echo' </button>';
-                                  echo'  </a>';
-                
-               
-                                echo'</div>';
-                          echo'  </form>
+                                  echo'  <input type="hidden"value="$id"> ';
+                    echo "<a href='./reservationPost.php?id=$id'>";
+                    echo '<button id="confirmer-btn" type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">';
+                    echo  'Confirmer';
+                    echo ' </button>';
+                    echo '  </a>';
+
+
+                    echo '</div>';
+                    echo '  </form>
                         </div>
                     </div>
                 </div>';
@@ -189,20 +189,23 @@ if (!isAuth('client')) {
     </footer>
 
     <script>
-        const vocatReserv = document.querySelectorAll('.avocatReserv')
-        vocatReserv.forEach(button => {
+        const vocatReserv = document.querySelectorAll('.avocatReserv');
+        const modals = document.querySelectorAll('.reservationModal');
+        vocatReserv.forEach((button, index) => {
             button.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('reservationModal').classList.remove('hidden')
+                modals[index].classList.remove('hidden');
             });
         })
 
 
 
-        document.getElementById('annuler-btn').onclick = function(e) {
-            e.preventDefault();
-            document.getElementById('reservationModal').classList.add('hidden');
-        };
+        const annuler_btn = document.querySelectorAll('.annuler-btn')
+
+        annuler_btn.forEach((popup, index) => {
+            popup.onclick = function(e) {
+                modals[index].classList.add('hidden');
+            };
+        })
 
         document.getElementById('confirmer-btn').onclick = function(e) {
 
